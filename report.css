@@ -1,0 +1,57 @@
+
+
+body{
+	font-family: PTSansRegular, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	background-color: lightgrey;
+}
+
+h1 {
+	font-size: 17px;
+}
+
+h2 {
+	font-size: 15px;
+}
+
+.testcaseImage {
+	max-height: 400px;
+}
+
+.testcase {
+	padding-left: 20px;
+	padding-bottom: 40px;
+}
+
+.testcasebox {
+	padding-top: 20px;
+	clear: both;
+}
+
+.testcase_indicator {
+	float:left;
+	width: 25px;
+	height: 22px;
+	margin-right: 5px;
+	border: 1px solid grey;
+}
+
+.testcase_success{
+	background-color : greenyellow;
+}
+
+.testcase_incomplete{
+	background-color : yellow;
+}
+
+
+.testcase_failed{
+	background-color : red;
+}
+
+.quicklink{
+	padding : 5px;
+	margin : 2px;
+	float: left;
+	border: 1px solid grey;
+}
