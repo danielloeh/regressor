@@ -1,21 +1,14 @@
 [
 	{
-		"testcase": "silpion_small",
-		"url": "http://www.silpion.de",
+		"testcase": "google_small",
+		"url": "http://www.google.com",
 		"height": 430,
 		"width": 230,
 		"waitAfterDomCompleteInMs": 3000
 	}, 
 	{
-		"testcase": "silpion_large",
-		"url": "http://www.silpion.de",
-		"height": 830,
-		"width": 430,
-		"waitAfterDomCompleteInMs": 3000
-	},
-	{
-		"testcase": "ikk",
-		"url": "http://www.ikk-classic.de",
+		"testcase": "google_large",
+		"url": "http://www.google.com",
 		"height": 830,
 		"width": 430,
 		"waitAfterDomCompleteInMs": 3000
