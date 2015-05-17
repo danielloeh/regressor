@@ -14,7 +14,7 @@
 		</div>
 
 		% for testcase in testcases:
-		<div class="quicklink %{selectTestCaseResult(testcase)}">
+		<div class="quicklink ${selectTestCaseResult(testcase)}">
 			<a href="#${testcase['name']}">${testcase['name']}</a>
 		</div> 
 		% endfor
@@ -33,7 +33,7 @@
 <%def name="buildTestCase(testcase)">
 	<div class="testcase">
 			<a name="${testcase['name']}"></a>
-			<div class="testcase_indicator %{selectTestCaseResult(testcase)}">&nbsp;</div>
+			<div class="testcase_indicator  ${selectTestCaseResult(testcase)}">&nbsp;</div>
 			<h2>${testcase['name']} : ${testcase['url']} (${testcase['height']}/${testcase['width']})</h2>
 			<div>
 			<a target="blank" href="${testcase['currentImage']}">current</a>
@@ -52,7 +52,7 @@
 </%def>
 
 
-<%def name="selectTestCaseresult(testcase)">
+<%def name="selectTestCaseResult(testcase)">
 	% if testcase['success'] == True:
 		testcase_success
 	% elif testcase['success'] == 'uncompleted':
