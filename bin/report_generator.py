@@ -8,18 +8,22 @@ def renderTemplate(testcases):
 
 	positiveTests = 0
 	negativeTests = 0
+	unfinishedTests = 0
 
 	for testcase in testcases:
 		if testcase["success"] == True:
 			positiveTests += 1
-		else:
+		elif testcase["success"] == False:
 			negativeTests += 1
+		else:
+			unfinishedTests += 1
 
 	mytemplate = Template(filename=TEMPLATE_FILE)
 	result_string = mytemplate.render(testcases = testcases, 
 			time = str(datetime.now()), 
 			positiveTests = positiveTests, 
-			negativeTests = negativeTests)
+			negativeTests = negativeTests,
+			unfinishedTests = unfinishedTests)
 	writeHtmlFile(result_string)
 		
 

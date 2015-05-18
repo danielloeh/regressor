@@ -12,7 +12,7 @@ if( args.length < 6 || args.length > 6){
 	var viewPortHeight = args[3];
 	var screenshotName = args[4];
 	var timeAfterDomReady = args[5]
-	console.log("Accessing: " + url + " (" + viewPortWidth + "px /" + viewPortHeight + " px). Writing to file: "+ screenshotName);
+	console.log("Accessing: " + url + " (w:" + viewPortWidth + "px /h:" + viewPortHeight + " px). Writing to file: "+ screenshotName);
 	var page = require('webpage').create();
 	t = Date.now();
 
