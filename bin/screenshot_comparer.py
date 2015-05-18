@@ -16,6 +16,6 @@ def compareImages(screenshotToTest, currentImage, differenceImage):
 
 def createScreenshot(testcaseUrl, testcaseHeight, testcaseWidth, screenshotToTest, waitForMsAfterDomReady):
 	bashCommandPhantomJS = ("phantomjs bin/screenshot_test.js " + testcaseUrl + " "  +	
-						 str(testcaseHeight) + " " + str(testcaseWidth) + " " + screenshotToTest + " " + str(waitForMsAfterDomReady) )
+						 str(testcaseWidth) + " " + str(testcaseHeight) + " " + screenshotToTest + " " + str(waitForMsAfterDomReady) )
 	output = subprocess.call(bashCommandPhantomJS.split())
 	print(output)
