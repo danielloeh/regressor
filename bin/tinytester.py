@@ -89,6 +89,6 @@ if __name__ == '__main__':
 	renderTemplate(testcases)		
 
 	if hadFailingTests == True:
-		sys.exit(0)
-	else:
 		sys.exit(1)
+	else:
+		sys.exit(0)

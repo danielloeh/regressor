@@ -2,15 +2,30 @@
 	{
 		"testcase": "google_small",
 		"url": "http://www.google.com",
-		"height": 430,
-		"width": 230,
+		"width": 430,
+		"height": 630,
 		"waitAfterDomCompleteInMs": 3000
 	}, 
 	{
 		"testcase": "google_large",
 		"url": "http://www.google.com",
-		"height": 830,
-		"width": 430,
+		"width": 830,
+		"height": 430,
+		"waitAfterDomCompleteInMs": 3000
+	},
+	{
+		"testcase": "wikipedia_large",
+		"url": "http://www.wikipedia.org",
+		"width": 1024,
+		"height": 630,
+		"waitAfterDomCompleteInMs": 3000
+	}, 
+	{
+		"testcase": "wikipedia_small",
+		"url": "http://www.wikipedia.org",
+		"height": 450,
+		"width": 400,
 		"waitAfterDomCompleteInMs": 3000
 	}
+
 ]
