@@ -2,7 +2,7 @@
 import unittest
 from html_templating import createTestCase
 
-class TinyTestr(unittest.TestCase):
+class RegressorTest(unittest.TestCase):
 
 
 	def testTry(self):
