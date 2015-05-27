@@ -36,12 +36,7 @@
 		<a name="${testcase['name']}"></a>
 		<div class="testcase_indicator  ${selectTestCaseResult(testcase)}">&nbsp;</div>
 		<h2>${testcase['name']} : <a href="${testcase['url']}" target="_blank">${testcase['url']}</a> (height: ${testcase['height']}/width: ${testcase['width']})</h2>
-		% if testcase['message'] != "":
-			<div class="message_box">
-				<img style="float:left" src="icons/appbar.transit.hazard.png" />
-				<p class="message_text">${testcase['message']} </p>
-			</div>	
-		% endif
+		${buildMessageBox(testcase['message'])}
 		<div class="jump_container">
 			% if testcase['currentImage'] != "":
 			<div class="jump_box">
@@ -50,14 +45,14 @@
 				</a>
 			</div>
 			% endif
-			% if testcase['oldImage'] != "":
+			% if testcase['oldImage'] != "" and testcase['success'] != 'unfinished':
 			<div class="jump_box">
 				<a target="_blank" href="${testcase['oldImage']}">
 					<img class="jump_icon" src="icons/appbar.door.enter.png" /><p class="jump_text">old</p>
 				</a>
 			</div>
 			% endif
-			% if testcase['differenceImage'] != "":
+			% if testcase['differenceImage'] != "" and testcase['success'] != 'unfinished':
 			<div class="jump_box">
 				<a target="_blank" href="${testcase['differenceImage']}">
 					<img class="jump_icon" src="icons/appbar.door.enter.png" /><p class="jump_text">difference</p>
@@ -80,6 +75,15 @@
 	</div>
 </%def>
 
+
+<%def name="buildMessageBox(message)">
+	% if message != "":
+		<div class="message_box">
+			<img class="message_icon" src="icons/appbar.transit.hazard.png" />
+			<p class="message_text">${message}</p>
+		</div>	
+	% endif
+</%def>
 
 <%def name="selectTestCaseResult(testcase)">
 	% if testcase['success'] == True:
