@@ -14,7 +14,9 @@
 
 		% for testcase in testcases:
 		<div class="quicklink ${selectTestCaseResult(testcase)}">
-			<a href="#${testcase['name']}">${testcase['name']}</a>
+			<a href="#${testcase['name']}">
+				<img class="jump_icon" src="icons/appbar.control.play.png" /><p class="jump_text">${testcase['name']}</p>
+			</a>
 		</div> 
 		% endfor
 			
@@ -35,28 +37,45 @@
 		<div class="testcase_indicator  ${selectTestCaseResult(testcase)}">&nbsp;</div>
 		<h2>${testcase['name']} : <a href="${testcase['url']}" target="_blank">${testcase['url']}</a> (height: ${testcase['height']}/width: ${testcase['width']})</h2>
 		% if testcase['message'] != "":
-			<div class="message_box">Message: ${testcase['message']}</div>	
+			<div class="message_box">
+				<img style="float:left" src="icons/appbar.transit.hazard.png" />
+				<p class="message_text">${testcase['message']} </p>
+			</div>	
 		% endif
-		<div>
+		<div class="jump_container">
 			% if testcase['currentImage'] != "":
-			<a target="_blank" href="${testcase['currentImage']}">current</a>
+			<div class="jump_box">
+				<a target="_blank" href="${testcase['currentImage']}">
+					<img class="jump_icon" src="icons/appbar.door.enter.png" /><p class="jump_text">current</p>
+				</a>
+			</div>
 			% endif
 			% if testcase['oldImage'] != "":
-			<a target="_blank" href="${testcase['oldImage']}">old</a>
+			<div class="jump_box">
+				<a target="_blank" href="${testcase['oldImage']}">
+					<img class="jump_icon" src="icons/appbar.door.enter.png" /><p class="jump_text">old</p>
+				</a>
+			</div>
 			% endif
 			% if testcase['differenceImage'] != "":
-			<a target="_blank" href="${testcase['differenceImage']}">difference</a>
+			<div class="jump_box">
+				<a target="_blank" href="${testcase['differenceImage']}">
+					<img class="jump_icon" src="icons/appbar.door.enter.png" /><p class="jump_text">difference</p>
+				</a>
+			</div>
 			% endif
 		</div>
 		% if testcase['currentImage'] != "":
-		<img 
-			class="testcaseImage" 
-			src="${testcase['currentImage']}"
-			% if testcase['success'] != 'unfinished':
-				onmouseover="this.src='${testcase['differenceImage']}';"
-				onmouseout="this.src='${testcase['currentImage']}';" 
-			% endif
-			/>
+		<p>
+			<img 
+				class="testcaseImage" 
+				src="${testcase['currentImage']}"
+				% if testcase['success'] != 'unfinished':
+					onmouseover="this.src='${testcase['differenceImage']}';"
+					onmouseout="this.src='${testcase['currentImage']}';" 
+				% endif
+				/>
+		</p>
 		% endif
 	</div>
 </%def>

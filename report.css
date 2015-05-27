@@ -17,13 +17,17 @@ h2 {
 .message_box {	
     border: 1px solid black;
     width: 60%;
-    padding: 20px 10px;
     background-color: mistyrose;
     margin: 20px 0px;
+    float: left;
+}
 
+.message_text {
+	padding: 20px 10px;
 }
 
 .testcaseImage {
+	clear: both;
 	max-height: 400px;
 }
 
@@ -43,6 +47,29 @@ h2 {
 	height: 22px;
 	margin-right: 5px;
 	border: 1px solid grey;
+}
+
+.clear {
+	clear: both;
+}
+
+.jump_icon {
+	float: left; 
+	height: 20px; 
+	width: 20px;
+}
+
+.jump_container{
+	clear: both;
+	padding: 10px 0px;
+}
+
+.jump_box {
+	float: left;
+}
+
+.jump_text {
+	margin: 2px 10px 2px 20px;
 }
 
 .testcase_success{
