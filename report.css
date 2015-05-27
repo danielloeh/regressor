@@ -14,6 +14,15 @@ h2 {
 	font-size: 15px;
 }
 
+.message_box {	
+    border: 1px solid black;
+    width: 60%;
+    padding: 20px 10px;
+    background-color: mistyrose;
+    margin: 20px 0px;
+
+}
+
 .testcaseImage {
 	max-height: 400px;
 }

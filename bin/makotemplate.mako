@@ -29,12 +29,13 @@
 
 
 <%def name="buildTestCase(testcase)">
+	<hr />
 	<div class="testcase">
 		<a name="${testcase['name']}"></a>
 		<div class="testcase_indicator  ${selectTestCaseResult(testcase)}">&nbsp;</div>
 		<h2>${testcase['name']} : <a href="${testcase['url']}" target="_blank">${testcase['url']}</a> (height: ${testcase['height']}/width: ${testcase['width']})</h2>
 		% if testcase['message'] != "":
-			<p>Message: ${testcase['message']}</p>	
+			<div class="message_box">Message: ${testcase['message']}</div>	
 		% endif
 		<div>
 			% if testcase['currentImage'] != "":
