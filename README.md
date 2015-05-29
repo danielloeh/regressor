@@ -29,8 +29,9 @@ Usage:
 - optional : apt-get install phantomjs 
 - optional : apt-get install imagemagick
 - ./regression_test.sh
+- Best used in your build pipeline after deploying to a certain environment
 
 Open Features:
-- Activly confirm a failed screenshot
+- Activly set a new reference screenshot
 
  
