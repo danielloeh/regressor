@@ -3,7 +3,7 @@
  What? 
 - Frontend rendering regression testing tool
 
- Why?
+Why?
 - Increasing css complexity increases the need of tests
 - Functional tests do not cover how it actually looks when it's rendered
 - the more often you deploy, the more expensive your manual testing gets
