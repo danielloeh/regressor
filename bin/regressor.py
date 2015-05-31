@@ -71,12 +71,12 @@ if __name__ == '__main__':
 		for testCase in testCases:
 			
 			message = ""
-			screenshotToTest = screenshotDir + testCase.name + postfixForTest;
+			screenshotToTest = screenshotDir + testCase.name + "_" + str(testCase.height) + "_" +  str(testCase.width) + postfixForTest;
 			createScreenshot(testCase.url, testCase.height, testCase.width, screenshotToTest, testCase.waitInMs)
 			if os.path.isfile(screenshotToTest):
-				currentImage = screenshotDir + testCase.name + postfixForCurrent
-				differenceImage = screenshotDir + testCase.name + postfixForDiff
-				oldImage= screenshotDir + testCase.name + postfixForOld
+				currentImage = screenshotDir + testCase.name + "_" + str(testCase.height) + "_" +  str(testCase.width) + postfixForCurrent
+				differenceImage = screenshotDir + testCase.name + "_" + str(testCase.height) + "_" +  str(testCase.width) + postfixForDiff
+				oldImage= screenshotDir + testCase.name  + "_" + str(testCase.height) + "_" +  str(testCase.width) + postfixForOld
 				result = "unfinished"
 				if os.path.isfile(currentImage):
 					result = compareImages(screenshotToTest, currentImage, differenceImage)
