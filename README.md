@@ -12,9 +12,10 @@ Why?
 
 How?
 - It compares a previous version of a website with the current state, based on screenshots 
-- An html report will be  generated which displays the testcases, their screenshots and differences to the previous version
+- It will exit with 0 or 1, depending in the testresult so it can be used as part of a build pipeline
+- An html report will be generated which displays the testcases, their screenshots and differences to the previous version
 - Different resolutions can be configured for each testcase to test multiple breakpoints (for responsive)
-- Testcases are configured in sites.json
+- Testcases are separately configured in sites.json
 
 Author: Daniel Löffelholz daniel.loeffelholz@gmail.com
 Company: Silpion IT-Solutions GmbH
@@ -29,7 +30,8 @@ Usage:
 - optional : apt-get install phantomjs 
 - optional : apt-get install imagemagick
 - ./regression_test.sh
-- Best used in your build pipeline after deploying to a certain environment
+- Best used in your build pipeline after deploying to a certain environment 
+- Run unittests: /bin/run_test.sh
 
 Open Features:
 - Activly set a new reference screenshot
