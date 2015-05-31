@@ -26,9 +26,7 @@ from TestCase import TestCase
 # Open features
 # - configuration of different view ports for each site
 # - add render time to result
-# - check for uniqueness of testcases
 # - delete reference images with wrong dimensions
-# - in case of error: print error to template
 ###############################
 
 #variables
@@ -73,9 +71,7 @@ if __name__ == '__main__':
 		for testCase in testCases:
 			
 			message = ""
-
 			screenshotToTest = screenshotDir + testCase.name + postfixForTest;
-						
 			createScreenshot(testCase.url, testCase.height, testCase.width, screenshotToTest, testCase.waitInMs)
 			if os.path.isfile(screenshotToTest):
 				currentImage = screenshotDir + testCase.name + postfixForCurrent
@@ -101,8 +97,6 @@ if __name__ == '__main__':
 			testResult = TestResult(result, message)
 			completedTestCase = createTestCase(testCase.name, testCase.url, testCase.height, testCase.width, currentImage, oldImage, differenceImage, testResult)
 			completedTestCases.append(completedTestCase)	
-			
-				
 
 	renderTemplate(completedTestCases)		
 
