@@ -40,6 +40,7 @@ Quickstart:
 - Running unittests: `/bin/run_test.sh`
 
 Recommended setup:
+
 Variant 1:
 - Use regressor as submodule in your local repository for versioning your local testfile (see
  https://github.com/danielloeh/regressor/wiki/How-to-integrate-into-your-local-Git-Repository)
