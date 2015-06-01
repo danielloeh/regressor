@@ -62,11 +62,13 @@ def renameFile(fromName, toName):
 # main
 if __name__ == '__main__':
 
-	if len (sys.argv) < 2:
-		print ('Usage: python html_templating <screenshotDir>')
+	if len (sys.argv) < 3:
+		print ('Usage: python regressor <screenshotDir> <json_file>')
 	else:
-		testCases = parseSitesFromJson(JSON_FILE)
 		screenshotDir = sys.argv[1]
+		json_file = sys.argv[2]
+		testCases = parseSitesFromJson(json_file)
+		
 		completedTestCases = []
 		for testCase in testCases:
 			
@@ -98,9 +100,9 @@ if __name__ == '__main__':
 			completedTestCase = createTestCase(testCase.name, testCase.url, testCase.height, testCase.width, currentImage, oldImage, differenceImage, testResult)
 			completedTestCases.append(completedTestCase)	
 
-	renderTemplate(completedTestCases)		
+		renderTemplate(completedTestCases)		
 
-	if hadFailingTests == True:
-		sys.exit(1)
-	else:
-		sys.exit(0)
+		if hadFailingTests == False:
+			sys.exit(0)
+	
+	sys.exit(1)

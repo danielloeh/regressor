@@ -9,5 +9,3 @@ postfixForTest = "_screenshotToTest.jpg"
 RESULTING_HTML_FILE = "result.html"
 # the template for the report
 TEMPLATE_FILE = "bin/makotemplate.mako"
-# the configuration of the testcases
-JSON_FILE = "sites.json"
