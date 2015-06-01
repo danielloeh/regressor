@@ -1,8 +1,16 @@
 #! /usr/bin/python
 import json
+import os.path
 from TestCase import TestCase
 
+EXAMPLE_JSON_FILE = "sites.example.json"
+
 def parseSitesFromJson(jsonFile):
+
+	if not os.path.isfile(jsonFile):
+		print("[WARNING] no " + jsonFile + " found, using example file " +  EXAMPLE_JSON_FILE + ".")
+		jsonFile = EXAMPLE_JSON_FILE
+
 	with open(jsonFile) as json_file:
 		data = json.load(json_file)
 
