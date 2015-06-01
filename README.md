@@ -15,9 +15,10 @@ How?
 - It will exit with 0 or 1, depending in the testresult so it can be used as part of a build pipeline
 - An html report will be generated which displays the testcases, their screenshots and differences to the previous version
 - Different resolutions can be configured for each testcase to test multiple breakpoints (for responsive)
-- Testcases are separately configured in a json file (see sites.example.json)
+- Testcases are separately configured in a json file (see `sites.example.json`)
 
 Author: Daniel Löffelholz daniel.loeffelholz@gmail.com
+
 Company: Silpion IT-Solutions GmbH
 
 Technology:
@@ -27,8 +28,8 @@ Technology:
 - phantomjs
 
 Requirements:
-- phantomjs (apt-get install phantomjs)
-- imagemagick (apt-get install imagemagick)
+- phantomjs (`apt-get install phantomjs`)
+- imagemagick (`apt-get install imagemagick`)
 
 Quickstart:
 - Clone project
