@@ -28,13 +28,18 @@ Technology:
 
 Requirements:
 - phantomjs (apt-get install phantomjs)
-- imagemagick apt-get install imagemagick
+- imagemagick (apt-get install imagemagick)
 
 Quickstart:
 - Clone project
 - Create your `sites.json` from `sites.example.json`
 - run `run.sh sites.json`
-- Best used in your build pipeline after deploying to a certain environment (for setup recommendations read: https://github.com/danielloeh/regressor/wiki/How-to-integrate-into-your-local-Git-Repository
+- Best used in your build pipeline after deploying to a certain environment 
 - Running unittests: `/bin/run_test.sh`
+
+Recommended setup:
+- Use regressor as submodule in your local repository with your testcase json file (see
+ https://github.com/danielloeh/regressor/wiki/How-to-integrate-into-your-local-Git-Repository)
+- Based on that, use it on jenkins (see https://github.com/danielloeh/regressor/wiki/Integrate-on-jenkins-build-server-with-git-plugin)
 
 
