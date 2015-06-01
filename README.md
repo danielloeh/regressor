@@ -35,12 +35,18 @@ Quickstart:
 - Clone project
 - Create your `sites.json` from `sites.example.json`
 - run `run.sh sites.json`
+- check results in `result.html`
 - Best used in your build pipeline after deploying to a certain environment 
 - Running unittests: `/bin/run_test.sh`
 
 Recommended setup:
-- Use regressor as submodule in your local repository with your testcase json file (see
+Variant 1:
+- Use regressor as submodule in your local repository for versioning your local testfile (see
  https://github.com/danielloeh/regressor/wiki/How-to-integrate-into-your-local-Git-Repository)
 - Based on that, use it on jenkins (see https://github.com/danielloeh/regressor/wiki/Integrate-on-jenkins-build-server-with-git-plugin)
+
+Variant 2: 
+- Just checkout the project
+- Modify your testcase file locally on all your environments
 
 
