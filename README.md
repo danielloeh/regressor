@@ -26,15 +26,15 @@ Technology:
 - imagemagick 
 - phantomjs
 
-Usage:
-- optional : apt-get install phantomjs 
-- optional : apt-get install imagemagick
-- recommended : create sites.json from sites.example.json
-- run regression_test.sh
-- Best used in your build pipeline after deploying to a certain environment 
-- Run unittests: /bin/run_test.sh
+Requirements:
+- phantomjs (apt-get install phantomjs)
+- imagemagick apt-get install imagemagick
 
-Open Features:
-- Activly set a new reference screenshot
+Quickstart:
+- Clone project
+- Create your `sites.json` from `sites.example.json`
+- run `run.sh sites.json`
+- Best used in your build pipeline after deploying to a certain environment (for setup recommendations read: https://github.com/danielloeh/regressor/wiki/How-to-integrate-into-your-local-Git-Repository
+- Running unittests: `/bin/run_test.sh`
 
- 
+
