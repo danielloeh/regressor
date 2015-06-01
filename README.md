@@ -29,7 +29,8 @@ Technology:
 Usage:
 - optional : apt-get install phantomjs 
 - optional : apt-get install imagemagick
-- ./regression_test.sh
+- recommended : create sites.json from sites.example.json
+- run regression_test.sh
 - Best used in your build pipeline after deploying to a certain environment 
 - Run unittests: /bin/run_test.sh
 
