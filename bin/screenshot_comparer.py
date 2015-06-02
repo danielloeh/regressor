@@ -1,6 +1,7 @@
 #! /usr/bin/python
 import subprocess
 import os.path
+from TestCase import TestCase
 
 def compareImages(screenshotToTest, currentImage, differenceImage):
 	if os.path.isfile(currentImage) and os.path.isfile(screenshotToTest):
@@ -13,9 +14,9 @@ def compareImages(screenshotToTest, currentImage, differenceImage):
 		return "0"
 
 
-def createScreenshot(testcaseUrl, testcaseHeight, testcaseWidth, screenshotToTest, waitForMsAfterDomReady):
-	bashCommandPhantomJS = ("phantomjs --ssl-protocol=any bin/screenshot_test.js " + testcaseUrl + " "  +	
-						 str(testcaseHeight) + " " + str(testcaseWidth) + " " + screenshotToTest + " " + str(waitForMsAfterDomReady) )
+def createScreenshot(testCaseObject, screenshotToTest):
+	bashCommandPhantomJS = ("phantomjs --ssl-protocol=any bin/screenshot_test.js " + testCaseObject.url + " "  +	
+						 testCaseObject.heightAsStr() + " " + testCaseObject.widthAsStr() + " " + screenshotToTest + " " + testCaseObject.waitInMsAsStr())
 	output = subprocess.call(bashCommandPhantomJS.split())
 	print(output)
 	

@@ -33,23 +33,24 @@ from TestCase import TestCase
 hadFailingTests = False
 
 # functions
-def createTestCase(testcaseName, testcaseUrl, testcaseHeight, testcaseWidth, currentImage, oldImage, differenceImage, testResult):
+def createTestCaseJson(testCaseObject, testResult, currentImage, oldImage, differenceImage):
 	testcase = {}
-	testcase["name"] = testcaseName
-	result = testResult.status
-	message = testResult.message
-	if result is "0":
+	testcase["name"] = testCaseObject.name
+	testcase["url"] = testCaseObject.url
+	testcase["height"] = testCaseObject.height
+	testcase["width"] = testCaseObject.width
+
+	if testResult.status is "0":
 		testcase["success"] = True
-	elif result is "unfinished": 
+	elif testResult.status is "unfinished": 
 		testcase["success"] = "unfinished"
 	else:
 		global hadFailingTests
 		hadFailingTests = True
 		testcase["success"] = False
-	testcase["message"] = message
-	testcase["url"] = testcaseUrl
-	testcase["height"] = testcaseHeight
-	testcase["width"] = testcaseWidth
+
+	testcase["message"] = testResult.message
+
 	testcase["currentImage"] =  currentImage
 	testcase["oldImage"] = oldImage
 	testcase["differenceImage"] = differenceImage
@@ -58,6 +59,8 @@ def createTestCase(testcaseName, testcaseUrl, testcaseHeight, testcaseWidth, cur
 def renameFile(fromName, toName):
 	subprocess.call(["mv", fromName, toName])
 
+def buildScreenshotFileName(screenshotDir, testCaseObject, postfix):
+	return screenshotDir + testCaseObject.name + "_" + str(testCaseObject.height) + "_" +  str(testCaseObject.width) + postfix;
 
 # main
 if __name__ == '__main__':
@@ -69,27 +72,27 @@ if __name__ == '__main__':
 		json_file = sys.argv[2]
 		testCases = parseSitesFromJson(json_file)
 		
-		completedTestCases = []
-		for testCase in testCases:
+		completedTestCasesJson = []
+		for testCaseObject in testCases:
 			
 			message = ""
-			screenshotToTest = screenshotDir + testCase.name + "_" + str(testCase.height) + "_" +  str(testCase.width) + postfixForTest;
-			createScreenshot(testCase.url, testCase.height, testCase.width, screenshotToTest, testCase.waitInMs)
+			screenshotToTest = buildScreenshotFileName(screenshotDir, testCaseObject, postfixForTest)
+			createScreenshot(testCaseObject, screenshotToTest)
 			if os.path.isfile(screenshotToTest):
-				currentImage = screenshotDir + testCase.name + "_" + str(testCase.height) + "_" +  str(testCase.width) + postfixForCurrent
-				differenceImage = screenshotDir + testCase.name + "_" + str(testCase.height) + "_" +  str(testCase.width) + postfixForDiff
-				oldImage= screenshotDir + testCase.name  + "_" + str(testCase.height) + "_" +  str(testCase.width) + postfixForOld
+				currentImage = buildScreenshotFileName(screenshotDir, testCaseObject, postfixForCurrent)
+				differenceImage = buildScreenshotFileName(screenshotDir, testCaseObject, postfixForDiff)
+				oldImage= buildScreenshotFileName(screenshotDir, testCaseObject, postfixForOld)
 				result = "unfinished"
 				if os.path.isfile(currentImage):
 					result = compareImages(screenshotToTest, currentImage, differenceImage)
 					renameFile(currentImage, oldImage)	
 				else:
-					print("Could not find reference image for " + testCase.name)
-					message = "Could not find reference image for " + testCase.name
+					print("Could not find reference image for " + testCaseObject.name)
+					message = "Could not find reference image for " + testCaseObject.name
 				renameFile(screenshotToTest, currentImage)
 			else:
 				print("Unable to take screenshot")
-				message = "Unable to take screenshot for " + testCase.name
+				message = "Unable to take screenshot for " + testCaseObject.name
 				hadFailingTests = True
 				currentImage = ""
 				differenceImage = ""
@@ -97,10 +100,10 @@ if __name__ == '__main__':
 				result = "failed"
 
 			testResult = TestResult(result, message)
-			completedTestCase = createTestCase(testCase.name, testCase.url, testCase.height, testCase.width, currentImage, oldImage, differenceImage, testResult)
-			completedTestCases.append(completedTestCase)	
+			completedTestCaseJson = createTestCaseJson(testCaseObject, testResult, currentImage, oldImage, differenceImage)
+			completedTestCasesJson.append(completedTestCaseJson)	
 
-		renderTemplate(completedTestCases)		
+		renderTemplate(completedTestCasesJson)		
 
 		if hadFailingTests == False:
 			sys.exit(0)

@@ -7,7 +7,6 @@ class TestCase(object):
 		self.height = height
 		self.waitInMs = waitInMs
 
-
 	def name(self):
 		return self.name
 
@@ -17,8 +16,17 @@ class TestCase(object):
 	def width(self):
 		return self.width
 
+	def widthAsStr(self):
+		return str(self.width)
+
 	def height(self):
 		return self.height
 
+	def heightAsStr(self):
+		return str(self.height)
+
 	def waitInMs(self):
 		return self.waitInMs
+
+	def waitInMsAsStr(self):
+		return str(self.waitInMs)

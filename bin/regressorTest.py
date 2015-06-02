@@ -1,14 +1,16 @@
 #! /usr/bin/python
 import unittest
-from regressor import createTestCase
+from regressor import createTestCaseJson
+from regressor import buildScreenshotFileName
 from TestResult import TestResult
+from TestCase import TestCase
 
 class RegressorTest(unittest.TestCase):
 
 
-	def testCreateSuccessfulTestCase(self):
+	def testCreateSuccessfulTestCaseJson(self):
 		#given
-		expectedTestCase = { "name" : "testcaseName",
+		expectedTestCaseJson = { "name" : "testcaseName",
 								"url" : "testcaseUrl",
 								"height" : "testcaseHeight",
 								"width" : "testcaseWidth",
@@ -19,12 +21,24 @@ class RegressorTest(unittest.TestCase):
 								"message" : "good"
 							}
 		testResult = TestResult("0","good")
+		testCaseObject = TestCase("testcaseName", "testcaseUrl", "testcaseHeight", "testcaseWidth", 42)
+
 		#when
-		testcase =  createTestCase("testcaseName", "testcaseUrl", "testcaseHeight", "testcaseWidth",
-		 	"currentImage", "oldImage", "differenceImage", testResult)
+		testcaseJson=  createTestCaseJson(testCaseObject, testResult, "currentImage", "oldImage", "differenceImage")
 		
 		#then
-		self.assertEqual(testcase, expectedTestCase)
+		self.assertEqual(testcaseJson, expectedTestCaseJson)
+
+	def testBuildScreenshotFileName(self):
+		#given
+		screenshotDir = "screenshots/"
+		testcase =  TestCase("testcaseName", "url", "11", "12", 3000)
+		postfix = "_postfix.jpg"
+
+		#when
+		filename = buildScreenshotFileName(screenshotDir, testcase, postfix)
+		#then
+		self.assertEqual(filename, "screenshots/testcaseName_11_12_postfix.jpg")
 
 
 if __name__ == '__main__':
