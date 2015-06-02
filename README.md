@@ -42,9 +42,10 @@ Quickstart:
 Recommended setup:
 
 Variant 1:
-- Use regressor as submodule in your local repository for versioning your local testfile (see
+- Use regressor as submodule in your local repository for versioning your files with the testcases for each invironment (see
  https://github.com/danielloeh/regressor/wiki/How-to-integrate-into-your-local-Git-Repository)
-- Based on that, use it on jenkins (see https://github.com/danielloeh/regressor/wiki/Integrate-on-jenkins-build-server-with-git-plugin)
+- According to the environment (QA/Test/Live/Develop-Server) call regressor with a different testcase file
+- Based on that, automate it with your jenkins build (see https://github.com/danielloeh/regressor/wiki/Integrate-on-jenkins-build-server-with-git-plugin)
 
 Variant 2: 
 - Just checkout the project
