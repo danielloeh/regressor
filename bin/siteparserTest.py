@@ -14,7 +14,6 @@ class SiteParserTest(unittest.TestCase):
 		testcases.append(someOtherTestCase)
 
 		# when
-
 		alreadyContainsTestCaseName = testCasesAlreadyContainTestCaseName(testCaseName, testcases)
 
 		# then
@@ -28,7 +27,6 @@ class SiteParserTest(unittest.TestCase):
 		testcases.append(someOtherTestCase)
 
 		# when
-
 		alreadyContainsTestCaseName = testCasesAlreadyContainTestCaseName(testCaseName, testcases)
 
 		# then

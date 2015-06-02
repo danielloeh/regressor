@@ -1,4 +1,4 @@
-	#! /usr/bin/python
+#! /usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
 import subprocess
@@ -9,24 +9,17 @@ from report_generator import renderTemplate
 from screenshot_comparer import *
 from TestResult import TestResult
 from TestCase import TestCase
+from Screenshots import *
 
 ################################
 # This little script uses phantomjs and compare (imagemagick)
 # to compare a previous version of a website with the current state, based on screenshots (aka regression test)
 # All testcases (urls + viewport settings) have to be configured in a file named sites.json 
-# {
-#   "testcase" : <testcasename>,
-#	"url" : <url>,
-#	"width" : <viewportwidth>,
-#	"height" : <viewportheight>,
-# 	"waitAfterDomCompleteInMs" :<time in ms to wait to make screenshot after DOM is ready>
-# }
-# Author: Daniel Löffelholz
+# 
+# Author: Daniel Löffelholz, daniel.loeffelholz@gmail.com
+# Company: Silpion IT-Solutions GmbH
 #
-# Open features
-# - configuration of different view ports for each site
-# - add render time to result
-# - delete reference images with wrong dimensions
+# github: https://github.com/danielloeh/regressor
 ###############################
 
 #variables
@@ -59,8 +52,35 @@ def createTestCaseJson(testCaseObject, testResult, currentImage, oldImage, diffe
 def renameFile(fromName, toName):
 	subprocess.call(["mv", fromName, toName])
 
-def buildScreenshotFileName(screenshotDir, testCaseObject, postfix):
-	return screenshotDir + testCaseObject.name + "_" + str(testCaseObject.height) + "_" +  str(testCaseObject.width) + postfix;
+def iterateOverTestCasesMakeScreenshotComparisonAndCreateTestCaseResultJson(screenshotDir, testCases):
+	testCaseJsonList = []
+	for testCaseObject in testCases:		
+		message = ""
+		screenshots = Screenshots(testCaseObject, screenshotDir)
+		createScreenshot(testCaseObject, screenshots.testName())
+		if os.path.isfile(screenshots.testName()):	
+			result = "unfinished"
+			if os.path.isfile(screenshots.currentName()):
+				result = compareImages(screenshots.testName(), screenshots.currentName(), screenshots.diffName())
+				renameFile(screenshots.currentName(), screenshots.oldName())	
+			else:
+				message = "Could not find reference image for " + testCaseObject.name
+			renameFile(screenshots.testName(), screenshots.currentName())
+			completedTestCaseJson = createTestCaseJson(testCaseObject, TestResult(result, message), screenshots.currentName(),  screenshots.oldName(),  
+				screenshots.diffName())
+			testCaseJsonList.append(completedTestCaseJson)
+
+		else:
+			message = "Unable to take screenshot for " + testCaseObject.name
+			global hadFailingTests
+			hadFailingTests = True
+			completedTestCaseJson = createTestCaseJson(testCaseObject, TestResult("failed", message), "", "", "")
+			testCaseJsonList.append(completedTestCaseJson)
+
+		if(message is not ""):
+			print(message)
+				
+	return testCaseJsonList
 
 # main
 if __name__ == '__main__':
@@ -72,38 +92,9 @@ if __name__ == '__main__':
 		json_file = sys.argv[2]
 		testCases = parseSitesFromJson(json_file)
 		
-		completedTestCasesJson = []
-		for testCaseObject in testCases:
-			
-			message = ""
-			screenshotToTest = buildScreenshotFileName(screenshotDir, testCaseObject, postfixForTest)
-			createScreenshot(testCaseObject, screenshotToTest)
-			if os.path.isfile(screenshotToTest):
-				currentImage = buildScreenshotFileName(screenshotDir, testCaseObject, postfixForCurrent)
-				differenceImage = buildScreenshotFileName(screenshotDir, testCaseObject, postfixForDiff)
-				oldImage= buildScreenshotFileName(screenshotDir, testCaseObject, postfixForOld)
-				result = "unfinished"
-				if os.path.isfile(currentImage):
-					result = compareImages(screenshotToTest, currentImage, differenceImage)
-					renameFile(currentImage, oldImage)	
-				else:
-					print("Could not find reference image for " + testCaseObject.name)
-					message = "Could not find reference image for " + testCaseObject.name
-				renameFile(screenshotToTest, currentImage)
-			else:
-				print("Unable to take screenshot")
-				message = "Unable to take screenshot for " + testCaseObject.name
-				hadFailingTests = True
-				currentImage = ""
-				differenceImage = ""
-				oldImage = ""
-				result = "failed"
+		testCaseJsonList = iterateOverTestCasesMakeScreenshotComparisonAndCreateTestCaseResultJson(screenshotDir, testCases)
 
-			testResult = TestResult(result, message)
-			completedTestCaseJson = createTestCaseJson(testCaseObject, testResult, currentImage, oldImage, differenceImage)
-			completedTestCasesJson.append(completedTestCaseJson)	
-
-		renderTemplate(completedTestCasesJson)		
+		renderTemplate(testCaseJsonList)		
 
 		if hadFailingTests == False:
 			sys.exit(0)
