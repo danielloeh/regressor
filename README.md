@@ -21,6 +21,8 @@ Author: Daniel Löffelholz daniel.loeffelholz@gmail.com
 
 Company: Silpion IT-Solutions GmbH
 
+Thanks to Silpion :-)
+
 Technology:
 - python (including mako templating)
 - javascript 
