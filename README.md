@@ -17,12 +17,6 @@ How?
 - Different resolutions can be configured for each testcase to test multiple breakpoints (for responsive)
 - Testcases are separately configured in a json file (see `sites.example.json`)
 
-Author: Daniel Löffelholz daniel.loeffelholz@gmail.com
-
-Company: Silpion IT-Solutions GmbH
-
-Thanks to Silpion :-)
-
 Technology:
 - python (including mako templating)
 - javascript 
